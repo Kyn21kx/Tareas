@@ -2,6 +2,7 @@
 #include <iostream>
 #include<conio.h>
 #include <vector>
+#include <algorithm>
 
 void Ej1() {
 	//Dado el año de nacimiento de una persona determinar la edad y si es mayor de edad 
@@ -43,15 +44,31 @@ void Ej2() {
 void Ej3() {
 	//Crear un programa que al ingresar tres números enteros, devuelva los números
 	//ordenados en forma ascendente y en forma descendente.
-	int nums[3], ascNums[3], dscNums[3];
 	int lNum, hNum;
-	for (int i = 0; i < sizeof(nums) / sizeof(int); i++) {
+	std::vector<int> nums;
+	for (int i = 0; i < 3; i++) {
 		std::cout << "\nIngresa un numero a la entrada " << i + 1 << std::endl;
-		std::cin >> nums[i];
-		lNum = i == 0 ? nums[i] : lNum;
-		if (nums[i] < lNum) {
-
-		}
+		int temp;
+		std::cin >> temp;
+		nums.push_back(temp);
+	}
+	//Asc
+	std::sort(nums.begin(), nums.end(), std::less<>());
+	std::cout << "Ascendente" << std::endl;
+	for (int j = 0; j < 3; j++) {
+		std::cout << nums[j] << std::endl;
+	}
+	//Desc
+	std::sort(nums.begin(), nums.end(), std::greater<>());
+	std::cout << "Descendente" << std::endl;
+	for (int j = 0; j < 3; j++) {
+		std::cout << nums[j] << std::endl;
 	}
 	_getch();
+}
+
+void Ej4() {
+	//Un restaurante ofrece un descuento de 10% para consumos de hasta $100.00 y un
+	//descuento de 20 % para consumos mayores, para ambos casos se aplica el IVA de 16 %.
+	//Determinar el monto de descuento, el impuesto y el importe a pagar.
 }
