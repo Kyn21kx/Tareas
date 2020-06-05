@@ -1,0 +1,5 @@
+﻿  Main.cpp
+X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\HeaderFiles\Ejercicios.h(47,12): warning C4101: 'hNum': unreferenced local variable
+X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\HeaderFiles\Ejercicios.h(46,27): warning C4101: 'dscNums': unreferenced local variable
+X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\HeaderFiles\Ejercicios.h(46,15): warning C4101: 'ascNums': unreferenced local variable
+  Tareas.vcxproj -> X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\Debug\Tareas.exe
