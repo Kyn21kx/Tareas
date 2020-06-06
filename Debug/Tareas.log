@@ -1,4 +1,5 @@
 ﻿  Main.cpp
-X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\HeaderFiles\Ejercicios.h(47,12): warning C4101: 'hNum': unreferenced local variable
-X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\HeaderFiles\Ejercicios.h(47,6): warning C4101: 'lNum': unreferenced local variable
-  Tareas.vcxproj -> X:\Skul\Materias\02\Programación\AyudaConTareas\Tareas\Debug\Tareas.exe
+D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(47,12): warning C4101: 'hNum': unreferenced local variable
+D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(47,6): warning C4101: 'lNum': unreferenced local variable
+D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(74,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Tareas.vcxproj -> D:\Skul\02\Programming\Tareas\Debug\Tareas.exe

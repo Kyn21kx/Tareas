@@ -71,4 +71,77 @@ void Ej4() {
 	//Un restaurante ofrece un descuento de 10% para consumos de hasta $100.00 y un
 	//descuento de 20 % para consumos mayores, para ambos casos se aplica el IVA de 16 %.
 	//Determinar el monto de descuento, el impuesto y el importe a pagar.
+	const float iva = 0.16;
+	float cons, res, desc;
+	std::cout << "\nIngresa el monto del consumo: " << std::endl;
+	std::cin >> cons;
+	res = cons;
+	if (cons <= 100) {
+		desc = (cons * 0.1f);
+	}
+	else {
+		desc = (cons * 0.2f);
+	}
+	res = (res - desc) + (cons * iva);
+	std::cout << "El descuento es: " << desc << std::endl;
+	std::cout << "El impuesto es: " << cons * iva << std::endl;
+	std::cout << "El costo final es: " << res << std::endl;
+	_getch();
+}
+
+void Ej5() {
+	enum Clima
+	{
+		Frio,
+		Nublado,
+		Calor,
+		Tropical
+	};
+	Clima weather;
+	std::string sWeather[4]{
+		"Frio",
+		"Nublado",
+		"Calor",
+		"Tropical"
+	};
+	float temp;
+	std::cout << "\nIngresa la temperatura: ";
+	std::cin >> temp;
+	if (temp < 10) {
+		weather = Clima::Frio;
+	}
+	else if (temp >= 10 && temp <= 20) {
+		weather = Clima::Nublado;
+	}
+	else if (temp > 20 && temp <= 30) {
+		weather = Clima::Calor;
+	}
+	else {
+		weather = Clima::Tropical;
+	}
+	std::cout << "El clima es: " << sWeather[weather] << std::endl;
+	_getch();
+}
+
+void Ej6() {
+	//Elabore un algoritmo que obtenga las raíces reales de una ecuación de segundo grado.
+	float a, b, c, x1, x2;
+	float rootExpression;
+	std::cout << "\nIngresar a: ";
+	std::cin >> a;
+	std::cout << "Ingresar b: ";
+	std::cin >> b;
+	std::cout << "Ingresar c: ";
+	std::cin >> c;
+	rootExpression = (pow(b, 2) - (4 * a * c));
+	if (a != 0 && rootExpression >= 0) {
+		x1 = (-b + sqrt(rootExpression)) / (2 * a);
+		x2 = (-b - sqrt(rootExpression)) / (2 * a);
+		std::cout << "x1 = " << x1 << std::endl;
+		std::cout << "x2 = " << x2 << std::endl;
+	}
+	else {
+		std::cout << "Valores ingresados devuelven indeterminación!!!" << std::endl;
+	}
+	_getch();
 }

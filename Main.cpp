@@ -21,13 +21,13 @@ int main () {
 		Ej3();
 		break;
 	case '4':
-
+		Ej4();
 		break;
 	case '5':
-
+		Ej5();
 		break;
 	case '6':
-
+		Ej6();
 		break;
 	case 'q':
 		return 1;
