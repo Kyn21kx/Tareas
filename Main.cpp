@@ -1,12 +1,12 @@
 /*
-* Programa para calcular el área y perímetro de un pentágono.
-* Autor: Leónidas Neftalí González Campos. ISEI02A. UP190151
+* Autor: Leónidas Neftalí González Campos. ISEI02A. UP190151.
+* Este archivo sirve únicamente como un menú para navegar entre las funciones de nuestro archivo principal
 */
 #include "HeaderFiles/Ejercicios.h"
 
 int main () {
 	system("cls");
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 6; i++) {	
 		std::cout << i + 1 << ") Ejercicio " << i + 1 << std::endl;
 	}
 	std::cout << "Q) Quit" << std::endl;

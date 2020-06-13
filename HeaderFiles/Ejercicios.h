@@ -1,178 +1,280 @@
 #pragma once
+//Librerías
 #include <iostream>
 #include<conio.h>
-#include <vector>
-#include <algorithm>
 /*
 * Leónidas Neftalí González Campos. UP190151. ISEI02A.
-* Creado en 6/04/2020
-* Modificado en 6/05/2020
+* Creado en 6/12/2020
+* Modificado en 6/12/2020
 */
 
-void Ej1() {
-	//Dado el año de nacimiento de una persona determinar la edad y si es mayor de edad 
-	//o menor de edad, considerando que el mayor de edad es mayor o igual a 18 años.
+//Estas definiciones son únicamente para poder escribir con acentos en la consola sin necesidad de escribir nuestro casteo todo el tiempo
+#define A (char)160
+#define I (char)161
+#define O (char)162
+#define U (char)163
+#define Ñ (char)164
 
-	//Constante del año actual basada en la cual sacaremos nuestro valor de edad.
-	const int currYear = 2020;
-	//year: Variable de entrada del año en el que nació el usuario
-	//age: Variable de "salida", será usada para determinar la salida del programa
-	int year, age;
-	std::cout << "\nIngrese su a"<< (char) 164 << "o de nacimiento" << std::endl;
-	std::cin >> year;
-	//En caso de que el usuario cometa un error y de un número negativo, usaremos el valor absoluto para evitar errores.
-	age = 2020 - abs(year);
-	std::cout << "Tu edad es: " << age << std::endl;
-	//Sección condicional a evaluar la edad
-	if (age >= 18) {
-		std::cout << "Eres mayor de edad" << std::endl;
+void Ej1() {
+	//Dado un número entero de un dígito (0 al 9), devolver el número en letras, por ejemplo al leer el dígito "9" se desplegará "Nueve".
+	
+	//Definición de array de strings con los nombres
+	std::string numNames[10] {
+		"Cero", "Uno", "Dos",
+		"Tres", "Cuatro", "Cinco",
+		"Seis", "Siete", "Ocho",
+		"Nueve"
+	};
+	//Variable de entrada
+	int num;
+	//Entrada del usuario
+	std::cout << "Ingrese un n"<<U<<"mero del 0 al 9: ";
+	std::cin >> num;
+	//Evaluación de entrada válida
+	if (num <= 9 && num >= 0) {
+		std::cout << "El n" << U << "mero es: " << numNames[num] << std::endl;
 	}
-	else if (age < 18 && age > 0) {
-		std::cout << "Eres menor de edad" << std::endl;
-	}
-	//Evaluación final, si no es mayor de edad, o menor, el valor debe ser inválido.
 	else {
-		std::cout << "Valor de edad invalido!" << std::endl;
+		//En caso de entrada inválida
+		std::cout << "Entrada inv" << A << "lida, por favor intente de nuevo..."<<std::endl;
+		_getch();
+		Ej1();
 	}
 	_getch();
 }
 
 void Ej2() {
-	//Dado un número entero, devolver el doble del número si es positivo, el triple del
-	//número si es negativo y cero si el número es neutro.
+	//Dado dos números enteros y un operador (+, -, * y / ) devolver el resultado de la
+	//operación de los dos números según el operador ingresado, considere si el segundo
+	//número es cero y el operador es / , no es divisible con el primero, entonces devolver
+    //como resultado 0.
 	
-	//Variable de entrada / salida
-	int num;
-	std::cout << "\nIngrese un numero entero" << std::endl;
-	std::cin >> num;
-	//Evaluación de la entrada (Si num > 0 Entonces num = num * 2, de lo contrario, num = num * 3)
-	num = num > 0 ? num * 2 : num * 3;
-	//Salida después de aplicar las operaciones
-	std::cout << "El numero final es: " << num << std::endl;
+	//Entradas
+	int n1, n2;
+	char op;
+	//Salida
+	float res;
+	//Entrada del usuario
+	std::cout << "Ingrese el primer n" << U << "mero: ";
+	std::cin >> n1;
+	std::cout << "Ingrese el segundo n" << U << "mero: ";
+	std::cin >> n2;
+	std::cout << "Ingresa con tu teclado el operador...\n";
+	op = _getch();
+	//Evaluación del caracter op con la función _getch()
+	switch (op) {
+	case '+':
+		res = n1 + n2;
+		break;
+	case '-':
+		res = n1 - n2;
+		break;
+	case '*':
+		res = n1 * n2;
+		break;
+	case '/':
+		res = n2 != 0 ? ((float)n1 / (float)n2) : 0;
+		break;
+	default:
+		//En caso de entrada inválida
+		std::cout << "Entrada inv" << A << "lida, por favor intente de nuevo..." << std::endl;
+		_getch();
+		Ej2();
+		break;
+	}
+	//Salida
+	std::cout << "El resultado dado los par" << A << "metros ingresados es: " << n1 << " " << op <<" " << n2 << " = " << res << std::endl;
 	_getch();
 }
 
 void Ej3() {
-	//Crear un programa que al ingresar tres números enteros, devuelva los números
-	//ordenados en forma ascendente y en forma descendente.
-	
-	//Declaramos variable de entrada / salida de la clase vector de la librería estándar para acceder funciones de lista
-	std::vector<int> nums;
-	//Ciclo para ingresar la entrada
-	for (int i = 0; i < 3; i++) {
-		std::cout << "\nIngresa un numero a la entrada " << i + 1 << std::endl;
-		//Variable de entrada auxiliar (std::vector no tiene un overload del operador >> para istream)
-		int temp;
-		std::cin >> temp;
-		//Añadir la variable temporal a la lista
-		nums.push_back(temp);
+	//Al ingresar el día y el número de un mes, devolver la estación del año de acuerdo al
+	//periodo:
+	//INVIERNO del 21 de Diciembre al 20 de Marzo.
+	//PRIMAVERA del 21 de Marzo al 21 de Junio.
+	//VERANO del 22 de Junio al 22 de Septiembre.
+	//OTOÑO del 23 de Septiembre al 20 de Diciembre.
+
+	//Variables de entrada
+	int dia, mes;
+	//Variable de salida
+	std::string estacion;
+	//Entrada de información
+	std::cout << "Por favor ingrese el mes: ";
+	std::cin >> mes;
+	std::cout << "Por favor ingrese el d" << I << "a: ";
+	std::cin >> dia;
+	//Evaluación de los rangos de mes y días
+	if ((mes == 12 && dia >= 21) || mes >= 1 && (mes <= 3 && dia <= 20)) {
+		estacion = "Invierno";
 	}
-	//Orden ascendente por función sort de la librería estándar
-	//Parámetros: Donde empieza la lista, donde termina, la clase de ordenamiento que deseamos
-	std::sort(nums.begin(), nums.end(), std::less<>());
-	std::cout << "Ascendente" << std::endl;
-	for (int j = 0; j < 3; j++) {
-		std::cout << nums[j] << std::endl;
+	else if (mes == 3 && dia >= 21 || (mes >= 4 && mes < 6)  || (mes == 6 && dia <= 21)) {
+		estacion = "Primavera";
 	}
-	//Orden descendente por función sort de la librería estándar
-	//Parámetros: Donde empieza la lista, donde termina, la clase de ordenamiento que deseamos
-	std::sort(nums.begin(), nums.end(), std::greater<>());
-	std::cout << "Descendente" << std::endl;
-	for (int j = 0; j < 3; j++) {
-		std::cout << nums[j] << std::endl;
+	else if ((mes == 6 && dia >= 22) || (mes >= 7 && mes < 9) || (mes == 9 && dia <= 22)) {
+		estacion = "Verano";
 	}
+	else if ((mes == 9 && dia >= 23) || (mes >= 10 && mes < 12) || (mes == 12 && dia <= 20)) {
+		estacion = "Otono";
+	}
+	//Salida de información
+	std::cout << estacion << std::endl;
 	_getch();
 }
 
 void Ej4() {
-	//Un restaurante ofrece un descuento de 10% para consumos de hasta $100.00 y un
-	//descuento de 20 % para consumos mayores, para ambos casos se aplica el IVA de 16 %.
-	//Determinar el monto de descuento, el impuesto y el importe a pagar.
-	
-	//Factor constante del iva (16%)
-	const float iva = 0.16;
-	//Cons: Variable de entrada. Res: Variable de salida. Desc: Variable de salida.
-	float cons, res, desc;
-	std::cout << "\nIngresa el monto del consumo: " << std::endl;
-	std::cin >> cons;
-	res = cons;
-	//condicional para el descuento (también puede expresarse con los operadores "?", ":" )
-	if (cons <= 100) {
-		desc = (cons * 0.1f);
+	//Determine el importe a pagar por el examen de admisión de una Universidad, cuyo
+	//valor depende del nivel socioeconómico y la escuela de procedencia.
+
+	//Variable para determinar si es una universidad particular
+	bool part;
+	//Importe dependerá del proceso
+	int importe;
+	//Entrada del usuario
+	std::cout << "Es su universidad particular?" << std::endl;
+	std::cout << "S" << I << " (S)" << " / No (Presione cualquier otra tecla)" << std::endl;
+	//Evaluación de la universidad particular
+	part = _getch() == 's';
+	std::cout << "Por favor entre su nivel social" << std::endl;
+	std::cout << "A) Nivel A\nB) Nivel B\nC) Nivel C" << std::endl;
+	//Dependiendo de el retorno de la función _getch() será nuestro importe
+	switch (_getch()) {
+	case 'a':
+		importe = part ? 400 : 300;
+		break;
+	case 'b':
+		importe = part ? 300 : 200;
+		break;
+	case 'c':
+		importe = part ? 200 : 100;
+		break;
+	default:
+		std::cout << "Entrada inv" << A << "lida, por favor intente de nuevo..." << std::endl;
+		_getch();
+		Ej4();
+		break;
 	}
-	else {
-		desc = (cons * 0.2f);
-	}
-	res = (res - desc) + (cons * iva);
 	//Salida
-	std::cout << "El descuento es: " << desc << std::endl;
-	std::cout << "El impuesto es: " << cons * iva << std::endl;
-	std::cout << "El costo final es: " << res << std::endl;
+	std::cout << "Su importe a pagar es: " << importe;
 	_getch();
 }
 
 void Ej5() {
-	//Enumerador de estados del clima (únicamente para mayor legibilidad del código)
-	enum Clima
-	{
-		Frio,
-		Nublado,
-		Calor,
-		Tropical
+	//Dado el número del mes y el año (cuatro dígitos) de una fecha, determinar que mes es
+	//en letras y cuantos días tiene, considerar que febrero tiene 28 o 29 días si el año es
+	//bisiesto, un año es bisiesto si es múltiplo de 4, pero no de 100 y si de 400. Por ejemplo,
+	//el mes 2 del año 2000 es Febrero y tiene 29 días.
+	
+	//Declaración del enumerador de todos los meses
+	enum MonthsBase {
+		Enero, Febrero, Marzo, Abril,
+		Mayo, Junio, Julio, Agosto,
+		Septiembre, Octubre, Noviembre,
+		Diciembre
 	};
-	//Declaración de una variable del enumerador
-	Clima weather;
-	//Mapeo del enumerador a un arreglo de strings
-	std::string sWeather[4]{
-		"Frio",
-		"Nublado",
-		"Calor",
-		"Tropical"
+	//Variable de nuestro mes a evaluar
+	MonthsBase month;
+	//Constante de los meses que tienen 31 días
+	const MonthsBase months31[7] {
+		Enero, Marzo, Mayo, Julio, Agosto,
+		Octubre, Diciembre
 	};
-	//Variable de entrada de temperatura
-	float temp;
-	std::cout << "\nIngresa la temperatura: ";
-	std::cin >> temp;
-	//Evaluación de la temperatura por condicionales
-	if (temp < 10) {
-		weather = Clima::Frio;
+	//Constante de los meses que tienen 30 días
+	const MonthsBase months30[4]{
+		Abril, Junio, Septiembre, Noviembre
+	};
+	//Variable arreglo string que servirá solo de salida
+	std::string sMonths[12]{
+		"Enero", "Febrero", "Marzo", "Abril",
+		"Mayo", "Junio", "Julio", "Agosto",
+		"Septiembre", "Octubre", "Noviembre",
+		"Diciembre"
+	};
+	//Id Month es la variable de entrada, al igual que year, amntDays depende de idMonth
+	int idMonth, amntDays, year;
+	//Variable que determina si será un año bisiesto
+	bool bis;
+	//Entrada del usuario
+	std::cout << "Ingresa el mes de la fecha" << std::endl;
+	std::cin >> idMonth;
+	std::cout << "Ingrese el a" << Ñ << "o" << std::endl;
+	std::cin >> year;
+	//En caso de que el usuario ingrese un dato negativo, tomaremos su valor absoluto
+	year = abs(year);
+	//Determinación de un año bisiesto
+	bis = (year % 4 == 0 || (year % 100 == 0 && year % 400 == 0));
+	//Casteo de la variable de entrada id a nuestro enumerador
+	month = (MonthsBase)(idMonth - 1);
+	//Ciclo para evaluar la cantidad de días y cerramos el ciclo con un break cuando encontramos un match
+	for (int i = 0; i < 12; i++) {
+		if (month == months31[i]) {
+			amntDays = 31;
+			break;
+		}
+		else if (month == months30[i]) {
+			amntDays = 30;
+			break;
+		}
+		else if (month == MonthsBase::Febrero) {
+			amntDays = bis ? 29 : 28;
+			break;
+		}
 	}
-	else if (temp >= 10 && temp <= 20) {
-		weather = Clima::Nublado;
-	}
-	else if (temp > 20 && temp <= 30) {
-		weather = Clima::Calor;
-	}
-	else {
-		weather = Clima::Tropical;
-	}
-	//Salida de datos
-	std::cout << "El clima es: " << sWeather[weather] << std::endl;
+	//Salida de información
+	std::cout << "El mes es: " << sMonths[month] << ", y tiene " << amntDays << " d" << I << "as" << std::endl;
+	if (bis)
+		std::cout << "El a" << Ñ << "o " << year << " es bisiesto" << std::endl;
+	else 
+		std::cout << "El a" << Ñ << "o " << year << " no es bisiesto" << std::endl;
 	_getch();
 }
 
 void Ej6() {
-	//Elabore un algoritmo que obtenga las raíces reales de una ecuación de segundo grado.
+	//Diseñe un programa que califique el puntaje obtenido en el lanzamiento de tres dados
+	//en base a la cantidad de seis obtenidos, de acuerdo a lo siguiente :
+	//Tres seis : Oro.Dos seis : Plata.Un Seis; Bronce.Ningún seis : Perdió.
+	//Se piden los valores de cada uno de los 3 dados verificando que sean números del 1
+	//al 6 y se obtiene el nivel de puntaje.
 
-	//Variables de entrada: a, b, c. Variables de salida: x1, x2.
-	float a, b, c, x1, x2;
-	float rootExpression;
-	std::cout << "\nIngresar a: ";
-	std::cin >> a;
-	std::cout << "Ingresar b: ";
-	std::cin >> b;
-	std::cout << "Ingresar c: ";
-	std::cin >> c;
-	//Expresión de la raíz para evaluar que no den números imaginarios
-	rootExpression = (pow(b, 2) - (4 * a * c));
-	if (a != 0 && rootExpression >= 0) {
-		x1 = (-b + sqrt(rootExpression)) / (2 * a);
-		x2 = (-b - sqrt(rootExpression)) / (2 * a);
-		std::cout << "x1 = " << x1 << std::endl;
-		std::cout << "x2 = " << x2 << std::endl;
+	//Declaración de variables de entrada
+	int valDados[3];
+	int cntr6 = 0;
+	//Declaración de variables de salida
+	std::string cal;
+	//Entrada del usuario
+	for (int i = 0; i < 3; i++)	{
+		std::cout << "Ingrese el valor del dado " << i + 1 << std::endl;
+		int tempVal;
+		std::cin >> tempVal;
+		//Aumento a la variable contadora de "seises"
+		if (tempVal == 6)
+			cntr6++;
+		if (tempVal <= 6 && tempVal > 0)
+			valDados[i] = tempVal;
+		//En caso de que el usuario ponga un valor inválido
+		else {
+			std::cout << "Entrada inv" << A << "lida, por favor intenta de nuevo!" << std::endl;
+			_getch();
+			i--;
+		}
 	}
-	else {
-		std::cout << "Valores ingresados devuelven indeterminacion!!!" << std::endl;
+
+	switch (cntr6) {
+	case 1:
+		cal = "Bronce";
+		break;
+	case 2:
+		cal = "Plata";
+		break;
+	case 3:
+		cal = "Oro";
+		break;
+	case 0:
+		cal = "Perdiste";
+		break;
 	}
+
+	std::cout << "Calificación: " << cal << std::endl;
+
 	_getch();
 }
