@@ -1,5 +1,2 @@
-﻿  Main.cpp
-D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(67,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(70,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Skul\02\Programming\Tareas\HeaderFiles\Ejercicios.h(73,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  Ej4.cpp
   Tareas.vcxproj -> D:\Skul\02\Programming\Tareas\Debug\Tareas.exe
