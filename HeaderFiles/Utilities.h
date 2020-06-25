@@ -2,6 +2,7 @@
 #include <iostream>
 #include <conio.h>
 #include <vector>
+#include <algorithm>
 
 #define A (char)160
 #define I (char)161

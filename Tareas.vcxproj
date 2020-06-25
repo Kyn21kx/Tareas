@@ -147,11 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ej1.cpp" />
+    <ClCompile Include="HeaderFiles\Ej1.cpp" />
     <ClCompile Include="HeaderFiles\Ej2.cpp" />
     <ClCompile Include="HeaderFiles\Ej3.cpp" />
     <ClCompile Include="HeaderFiles\Ej4.cpp" />
     <ClCompile Include="HeaderFiles\Ej5.cpp" />
+    <ClCompile Include="HeaderFiles\Ej6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeaderFiles\Utilities.h" />
